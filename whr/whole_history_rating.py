@@ -32,12 +32,14 @@ class Base:
         """
         players = [x for x in self.players.values() if len(x.days) > 0]
         players.sort(key=lambda x: x.days[-1].gamma())
+        i=len(players)
         for p in players:
             if len(p.days) > 0:
                 if current:
-                    print(f"{p.name} => {p.days[-1].elo}")
+                    print(f"{i} {p.name} => {p.days[-1].elo}")
                 else:
-                    print(f"{p.name} => {[x.elo for x in p.days]}")
+                    print(f"{i} {p.name} => {[x.elo for x in p.days]}")
+            i-=1
 
     def get_ordered_ratings(self, current=False, compact=False):
         """gets all ratings for each player (for each of his playing days) ordered
